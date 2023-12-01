@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { assert } from "./test";
 import { Caesar_Dressing } from "next/font/google";
+import style from "./home.module.css";
 
 const greek = Caesar_Dressing({ subsets: ["latin"], weight: "400" });
 
@@ -8,7 +9,7 @@ export default function Home() {
   assert(1 + 1 == 2, "return 2");
   return (
     <main>
-      <section id="Hero" className="h-screen overflow-hidden">
+      <section id="Hero" className="h-screen mb-4 overflow-hidden">
         <Image
           src="/Socrates-desktop.webp"
           className="absolute hidden md:block h-screen object-cover"
@@ -27,7 +28,7 @@ export default function Home() {
         <div className="absolute bottom-4 left-0 right-0 md:top-2/4 md:left-2/4 md:-translate-y-1/2 text-center">
           <h1
             className={
-              "text-5xl md:text-7xl lg:text-8xl  md:leading-normal text-yellow-200 md:text-black" +
+              "mx-4 text-5xl md:text-7xl lg:text-8xl  md:leading-normal text-yellow-200 md:text-black" +
               " " +
               greek.className
             }
@@ -37,33 +38,70 @@ export default function Home() {
           <button className="text-2xl md:text-4xl text-white">Talk</button>
         </div>
       </section>
-      <section id="Benefits">
-        <h2 className="font-bold">
+      <section
+        id="Benefits"
+        className=" p-4 rounded-md md:max-w-2xl mx-4 md:mx-auto mb-4 bg-blue-300 leading-normal"
+      >
+        <h2 className="font-bold text-center text-2xl mb-2">
           Benefits of the Socratic Method Backed by Research
         </h2>
-        <ol>
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <li>
-            <strong>Enhanced Critical Thinking:</strong> +25% to +40% Impact.
+            <p>
+              <strong>Enhanced Critical Thinking:</strong>
+            </p>
+            <p>
+              {" "}
+              <span className="text-lime-700 font-medium">
+                +25% to +40%
+              </span>{" "}
+              Impact.
+            </p>
           </li>
           <li>
-            <strong>Improved Problem-Solving Abilities :</strong> Up to +30%
-            Enhancement.
+            <p>
+              <strong>Improved Problem-Solving Abilities :</strong>
+            </p>
+            <p>
+              {" "}
+              <span className="text-lime-700 font-medium">Up to +30% </span>
+              Enhancement.
+            </p>
           </li>
           <li>
-            <strong>Increased Engagement and Participation:</strong> +20% to
-            +50% Uplift.
+            <p>
+              <strong>Increased Engagement and Participation:</strong>
+            </p>
+            <p>
+              {" "}
+              <span className="text-lime-700 font-medium">
+                +20% to +50%
+              </span>{" "}
+              Uplift.
+            </p>
           </li>
           <li>
-            <strong>Development of Communication Skills:</strong> Approx. +30%
-            Improvement.
+            <p>
+              <strong>Development of Communication Skills:</strong>
+            </p>
+            <p>
+              {" "}
+              <span className="text-lime-700 font-medium">Approx. +30% </span>
+              Improvement.
+            </p>
           </li>
         </ol>
       </section>
-      <section id="How-it-works">
-        <h2 className="font-bold">
-          How the Socratic Method AI Chatbot Works
+      <section
+        id="How-it-works"
+        className="max-w-2xl mx-4 md:mx-auto align-center flex gap-14"
+      >
+        <h2
+          className={`font-bold uppercase text-2xl mb-2 ${style.verticalText} ${greek.className}`}
+        >
+          Socratic Method
         </h2>
-        <ol>
+        <ol className="grid gap-7">
           <li>
             <strong>Initiate:</strong> Simply start the conversation by
             accessing the chat interface.
@@ -91,9 +129,12 @@ export default function Home() {
         </ol>
       </section>
 
-      <section id="CTA"></section>
+      <section id="CTA" className="max-w-2xl mx-auto my-8">
+        <Image src="/Sunrise.webp" width={2688} height={1536} alt="Sunrise"/>
+        Click below to embark on a meaningful journey of self-discovery and
+      </section>
 
-      <section id="">
+      <section id="Awards" className="max-w-2xl mx-auto">
         <p>
           Socratic philosophy has spawned an extensive library of over 5,000
           books, essays, and scholarly works dedicated to unraveling,

@@ -1,3 +1,4 @@
-.goldenColor{
-    color:#f3c34e
-}
+.verticalText {
+    writing-mode: vertical-lr; 
+    text-orientation: upright; 
+  }
