@@ -40,12 +40,15 @@ export default function Home() {
       </section>
       <section
         id="Benefits"
-        className=" p-4 rounded-md md:max-w-2xl mx-4 md:mx-auto mb-4 bg-blue-300 leading-normal"
+        className=" p-4 rounded-md max-w-2xl mx-4 md:mx-auto mb-4 bg-gray-300 leading-normal"
       >
-        <h2 className="font-bold text-center text-2xl mb-2">
-          Benefits of the Socratic Method Backed by Research
-        </h2>
-        <ol className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex items-center justify-center">
+          <h2 className="font-bold text-center text-2xl mb-2">
+            Science and the Socratic Method
+          </h2>
+        </div>
+        <hr className="my-4" />
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-4 relative">
           <li>
             <p>
               <strong>Enhanced Critical Thinking:</strong>
@@ -94,12 +97,14 @@ export default function Home() {
       </section>
       <section
         id="How-it-works"
-        className="max-w-2xl mx-4 md:mx-auto align-center flex gap-14"
+        className="max-w-2xl mx-4 md:mx-auto align-center gap-14 bg-gray-300 p-4 rounded-md"
       >
         <h2
-          className={`font-bold uppercase text-2xl mb-2 ${style.verticalText} ${greek.className}`}
+          className={`font-bold uppercase text-2xl mb-2 ${greek.className} text-center`}
         >
-          Socratic Method
+          The Socratic Method
+          <div className={`${style.infinity} mx-auto`}></div>
+          <hr className="my-4" />
         </h2>
         <ol className="grid gap-7">
           <li>
@@ -129,9 +134,15 @@ export default function Home() {
         </ol>
       </section>
 
-      <section id="CTA" className="max-w-2xl mx-auto my-8">
-        <Image src="/Sunrise.webp" width={2688} height={1536} alt="Sunrise"/>
-        Click below to embark on a meaningful journey of self-discovery and
+      <section id="CTA" className={"flex max-w-2xl mx-auto my-8 " + style.weave}>
+        <span>
+          Click aside, on the vertical image to embark on a meaningful journey
+          of self-discovery and
+        </span>
+        <button>
+        <Image src="/greekPattern.svg" width={62} height={68} alt="greek pattern" />
+        Talk
+        </button>
       </section>
 
       <section id="Awards" className="max-w-2xl mx-auto">

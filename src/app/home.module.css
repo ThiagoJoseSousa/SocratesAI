@@ -2,3 +2,38 @@
     writing-mode: vertical-lr; 
     text-orientation: upright; 
   }
+  
+  .infinity {
+    position: relative;
+    width: 106px;
+    height: 50px;
+    box-sizing: content-box;
+  }
+  .infinity::before,
+  .infinity::after {
+    content: '';
+    box-sizing: content-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border: 10px solid #32557f;
+    border-radius: 50px 50px 0 50px;
+    transform: rotate(-45deg);
+  }
+
+  .infinity::after {
+    left: auto;
+    right: 0;
+    border-radius: 50px 50px 50px 0;
+    transform: rotate(45deg);
+  }
+
+  .weave{
+    background:
+    linear-gradient(135deg, #708090 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px),
+    linear-gradient(225deg, #708090 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px;
+    background-color:#708090;
+    background-size: 64px 128px;
+  }
