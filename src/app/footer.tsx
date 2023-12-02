@@ -1,5 +1,5 @@
 function Footer() {
-    return (<footer className="max-w-2xl mx-4 mt-12 py-4 sm:mx-auto flex justify-between">
+    return (<footer className="max-w-2xl mx-4 py-4 sm:mx-auto flex justify-between">
         <span>
         © 2023 Thiago José
         </span>

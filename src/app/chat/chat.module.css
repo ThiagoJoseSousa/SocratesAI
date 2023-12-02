@@ -1,0 +1,34 @@
+.pointer {
+    display: block;
+    width: 15px;
+    height: 30px; /* Adjusted the height */
+    position: relative;
+    margin-left: 4px;
+    background-color: #36354e;
+    color: white;
+    left: 10px;
+  }
+  
+  .pointer:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-right: 15px solid white; /* Adjusted border-right size */
+    border-top: 15px solid transparent; /* Adjusted border-top size */
+    border-bottom: 15px solid transparent; /* Adjusted border-bottom size */
+  }
+  
+  .pointer:before {
+    content: "";
+    position: absolute;
+    left: -14.3px; /* Adjusted left position */
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-right: 15px solid #36354e; /* Adjusted border-right size */
+    border-top: 15px solid transparent; /* Adjusted border-top size */
+    border-bottom: 15px solid transparent; /* Adjusted border-bottom size */
+  }
