@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { assert } from "./test";
 import { Caesar_Dressing } from "next/font/google";
 import style from "./home.module.css";
 import Footer from "./footer";
@@ -8,7 +7,6 @@ import Link from "next/link";
 export const greek = Caesar_Dressing({ subsets: ["latin"], weight: "400" });
 
 export default function Home() {
-  assert(1 + 1 == 2, "return 2");
   return (
     <>
       <main>
@@ -28,7 +26,6 @@ export default function Home() {
             width={1792}
             height={2304}
           />
-          <div className="absolute hidden md:block bottom-4 left-0 right-0 md:top-2/4 md:left-2/4 md:-translate-y-1/2 text-center"></div>
         </section>
         <section
           id="CTA"
@@ -168,3 +165,4 @@ export default function Home() {
     </>
   );
 }
+

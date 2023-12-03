@@ -12,7 +12,7 @@ function Chat() {
         </Link>
         <h2 className={`${greek.className} text-2xl ml-4`}>SOCRATES AI</h2>
       </div>
-      <section className="bg-white flex flex-col items-center justify-center relative h-screen w-full">
+      <section className="bg-white flex flex-col-reverse items-center justify-center relative h-screen w-full">
         <div id="chat-container" className="relative w-full h-5/6">
           <div id="chat" className="h-full flex items-center overflow-y-scroll">
             <span className="block w-full text-center">Placeholder</span>
