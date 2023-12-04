@@ -1,33 +1,21 @@
 import { config } from "dotenv";
-config()
+config();
 
 // pseudo-code:
-// the user clicks a button after sending the message, which says their intention: 
 /*
-    Thinking: "I believe," "I think," "In my opinion," "From my perspective," "It seems to me," "Considering that," "To me, it appears," "In my view," "From what I can tell," "As far as I'm concerned," "My take on this is," "The way I see it," "It strikes me that."
-
-    Assuming Something: "It appears that," "One might assume," "Seems like," "Presumably," "Perhaps," "Likely," "Probably," "I'd bet," "It's possible that," "Chances are."
-
-    Argumenting: "I argue that," "My point is," "I believe strongly that," "It's evident that," "My stance is," "In defense of," "Supporting the idea that," "The way I see it," "Based on the evidence," "My reasoning is," "I'm convinced that."
-
-    Positioning: "From my perspective," "In my eyes," "To me, it's clear that," "I stand by," "I align with," "I advocate for," "My position is," "I firmly believe," "It's my belief that," "In support of."
-
-    Not Considering the Consequences: "Ignoring the impact," "Without thinking about," "Overlooking the consequences," "Neglecting the repercussions," "Disregarding the aftermath," "Acting without foreseeing," "Without heeding the effects."
-
-    Questioning: "What are you hoping to achieve or understand with this question?"
-
+    I will use localStorage to store chat messages.
 */
 
 const options = {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    authorization: `Bearer ${process.env.API_KEY}`,
+    authorization: `Bearer ${process.env.SANDBOX_API_KEY}`,
   },
   body: JSON.stringify({
     providers: "openai",
     text: "Hello i need your help ! ",
-    chatbot_global_action: "Act as an assistant",
+    chatbot_global_action: "This chat you'll be using the socratic method. By this, I mean that your job is asking questions to: Clarify thinking, challenge assumptions, use evidence in arguments, explore alternative perspectives, consider the consequences, and question the questions. The user is the one who'll know things, you will not give any help, just question. ",
     previous_history: [],
     temperature: 0.0,
     max_tokens: 150,
@@ -35,18 +23,19 @@ const options = {
   }),
 };
 
-fetch("https://api.edenai.run/v2/text/chat", options)
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+async function fetchData() {
+  try {
+    const response = await fetch(
+      "https://api.edenai.run/v2/text/chat",
+      options
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
 
-function testing() {
-  return true;
-} 
 // successful API Calls:
 
 //     Aim: Verify that the frontend successfully fetches data from the API and updates the UI accordingly.
@@ -76,4 +65,5 @@ function testing() {
 
 //     Aim: Check how your frontend responds to network failures or timeouts when making API requests.
 //     Example: Simulate a network timeout and verify that your app handles it gracefully, potentially displaying an error message.
-export { testing  };
+const testing=true;
+export { fetchData, testing };

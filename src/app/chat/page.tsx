@@ -1,8 +1,18 @@
+'use client';
+
 import Link from "next/link";
 import style from "../chat/chat.module.css";
 import { greek } from "../page";
+import { useEffect, useState, useRef } from "react";
+import { fetchData } from "./async";
 
 function Chat() {
+  const [useMessageState, setMessageState] = useState<string>();
+
+  useEffect(() => {
+    fetchData();
+  }, [useMessageState]);
+
   return (
     <>
       <div className="fixed items-center flex top-4 left-4 z-50">
@@ -19,8 +29,22 @@ function Chat() {
             {/* take message from https://codepen.io/AllThingsSmitty/pen/jommGQ */}
           </div>
           <div className="absolute -bottom-12 left-0 right-0 flex justify-center">
-            <input type="text" name="" id="" placeholder="Tell me anything..." />
-            <button>➡</button>
+            <form
+              onSubmit={(e) =>{
+                e.preventDefault();
+                alert('submiting')
+                setMessageState((e.target as HTMLInputElement).value)
+              }
+              }
+            >
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="Tell me anything..."
+              />
+              <button type="submit">➡</button>
+            </form>
           </div>
         </div>
       </section>

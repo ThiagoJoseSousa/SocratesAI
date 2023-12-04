@@ -1,24 +1,53 @@
-import {expect, jest, test} from '@jest/globals';
-import { testing } from '../chat/async';
+import {expect, jest, test, describe} from '@jest/globals';
+import { fetchData, testing } from '../chat/async';
 
 
-test('HAH my name is',  ()=>{
-    expect('SlimShady').toBe('SlimShady')
+describe('loading jest', ()=>{
+    test('should return true',()=>{
+        expect(testing).toBe(true)
+    })
 })
 
-test('HAH my name is',  ()=>{
-    expect('SlimShady').toBe('SlimShady')
-})
+describe('fetchData function', () => {
+  test('should return mocked data', async () => {
+    interface MockedResponse {
+      openai: {
+        status: string;
+        generated_text: string;
+        message: {
+          role: string;
+          message: string;
+        }[];
+        cost: number;
+      };
+    }
 
-test('HAH my name is',  ()=>{
-    expect('SlimShady').toBe('SlimShady')
-})
+    const mockedData: MockedResponse = {
+      openai: {
+        status: 'success',
+        generated_text: "As an AI, I don't have feelings...",
+        message: [
+          {
+            role: 'user',
+            message: 'How are you?',
+          },
+          {
+            role: 'assistant',
+            message: "As an AI, I don't have feelings...",
+          },
+        ],
+        cost: 0.000086,
+      },
+    };
 
-test('HAH my name is',  ()=>{
-    expect('SlimShady').toBe('SlimShady')
-})
+    (global.fetch as jest.Mock) = jest.fn().mockResolvedValue({
+        json: async () => mockedData,
+      } as never) as jest.Mock;
 
-test ('true', ()=>{
-    expect(testing()).toBe(true)
-})
+    const data = await fetchData();
 
+    expect(data).toEqual(mockedData);
+
+    (global.fetch as jest.Mock).mockRestore();
+  });
+});
