@@ -98,7 +98,7 @@ export default function Home() {
         >
           <div className="flex items-center justify-center">
             <h2 className={`font-bold text-center text-2xl mb-2 ${greek.className}`}>
-            Science: Socratic Benefits
+            Science: Socratic Benefits. Add Stress/anxiety benefits.
             </h2>
           </div>
           <hr className="my-4" />

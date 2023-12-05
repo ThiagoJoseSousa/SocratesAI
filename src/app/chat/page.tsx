@@ -4,13 +4,13 @@ import Link from "next/link";
 import style from "../chat/chat.module.css";
 import { greek } from "../page";
 import { Dispatch, SetStateAction } from "react";
-import { fetchData } from "./async";
 
 interface ChatProps {
-  setMessageState: Dispatch<SetStateAction<string | undefined>>;
+  setMessageState: Dispatch<SetStateAction<string>>;
+  useAiState:string;
 }
 
-function Chat({setMessageState} : ChatProps) {
+function Chat({setMessageState, useAiState} : ChatProps) {
 
   return (
     <>
@@ -26,6 +26,7 @@ function Chat({setMessageState} : ChatProps) {
           <div id="chat" className="h-full flex items-center overflow-y-scroll">
             <span className="block w-full text-center">Placeholder</span>
             {/* take message from https://codepen.io/AllThingsSmitty/pen/jommGQ */}
+            {useAiState}
           </div>
           <div className="absolute -bottom-12 left-0 right-0 flex justify-center">
             <form
