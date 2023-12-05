@@ -1,4 +1,6 @@
 import { config } from "dotenv";
+import {useEffect, useState} from 'react'
+
 config();
 
 // pseudo-code:
@@ -6,22 +8,26 @@ config();
     I will use localStorage to store chat messages.
 */
 
+const requestBody= {
+  providers: "openai",
+  text: "Hello i need your help ! ",
+  chatbot_global_action: "This chat you'll be using the socratic method. By this, I mean that your job is asking questions to: Clarify thinking, challenge assumptions, use evidence in arguments, explore alternative perspectives, consider the consequences, and question the questions. The user is the one who'll know things, you will not give any help, just question. ",
+  previous_history: [],
+  temperature: 0.0,
+  max_tokens: 150,
+  fallback_providers: "",
+}
+
 const options = {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    authorization: `Bearer ${process.env.SANDBOX_API_KEY}`,
+    authorization: `Bearer ${'a'}`,
   },
-  body: JSON.stringify({
-    providers: "openai",
-    text: "Hello i need your help ! ",
-    chatbot_global_action: "This chat you'll be using the socratic method. By this, I mean that your job is asking questions to: Clarify thinking, challenge assumptions, use evidence in arguments, explore alternative perspectives, consider the consequences, and question the questions. The user is the one who'll know things, you will not give any help, just question. ",
-    previous_history: [],
-    temperature: 0.0,
-    max_tokens: 150,
-    fallback_providers: "",
-  }),
+  body: JSON.stringify(requestBody),
 };
+
+
 
 async function fetchData() {
   try {
@@ -34,6 +40,18 @@ async function fetchData() {
   } catch (error) {
     throw error;
   }
+}
+
+function ChatState (){
+
+  const [useMessageState, setMessageState] = useState<string>();  
+
+  useEffect(() => {
+  /* Change options obj */
+  fetchData();
+}, [useMessageState]);
+
+return <Chat setMessageState={setMessageState} />
 }
 
 // successful API Calls:

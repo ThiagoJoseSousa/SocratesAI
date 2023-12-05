@@ -1,17 +1,16 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import style from "../chat/chat.module.css";
 import { greek } from "../page";
-import { useEffect, useState, useRef } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { fetchData } from "./async";
 
-function Chat() {
-  const [useMessageState, setMessageState] = useState<string>();
+interface ChatProps {
+  setMessageState: Dispatch<SetStateAction<string | undefined>>;
+}
 
-  useEffect(() => {
-    fetchData();
-  }, [useMessageState]);
+function Chat({setMessageState} : ChatProps) {
 
   return (
     <>
@@ -30,12 +29,13 @@ function Chat() {
           </div>
           <div className="absolute -bottom-12 left-0 right-0 flex justify-center">
             <form
-              onSubmit={(e) =>{
+              onSubmit={(e) => {
                 e.preventDefault();
-                alert('submiting')
-                setMessageState((e.target as HTMLInputElement).value)
-              }
-              }
+                const formElement = (e.target as HTMLFormElement)
+                  .elements[0] as HTMLInputElement;
+                const value = formElement?.value;
+                setMessageState(value);
+              }}
             >
               <input
                 type="text"
