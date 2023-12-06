@@ -3,14 +3,21 @@
 import Link from "next/link";
 import style from "../chat/chat.module.css";
 import { greek } from "../page";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState, useEffect } from "react";
 
 interface ChatProps {
   setMessageState: Dispatch<SetStateAction<string>>;
-  useAiState:string;
+  allMessagesState: string[];
 }
 
-function Chat({setMessageState, useAiState} : ChatProps) {
+function Chat({ setMessageState, allMessagesState }: ChatProps) {
+  const [messagesDivs, setMessagesDivs] = useState<React.JSX.Element[]>();
+  const [waitingRequest, setWaitingRequest] = useState<Boolean>(false);
+  useEffect(() => {
+    const arr = allMessagesState.map((message) => <div>{`${message}`}</div>);
+    setMessagesDivs(arr);
+    setWaitingRequest(false);
+  }, [allMessagesState]);
 
   return (
     <>
@@ -26,7 +33,7 @@ function Chat({setMessageState, useAiState} : ChatProps) {
           <div id="chat" className="h-full flex items-center overflow-y-scroll">
             <span className="block w-full text-center">Placeholder</span>
             {/* take message from https://codepen.io/AllThingsSmitty/pen/jommGQ */}
-            {useAiState}
+            {messagesDivs}
           </div>
           <div className="absolute -bottom-12 left-0 right-0 flex justify-center">
             <form
@@ -36,6 +43,7 @@ function Chat({setMessageState, useAiState} : ChatProps) {
                   .elements[0] as HTMLInputElement;
                 const value = formElement?.value;
                 setMessageState(value);
+                setWaitingRequest(true);
               }}
             >
               <input
@@ -44,7 +52,11 @@ function Chat({setMessageState, useAiState} : ChatProps) {
                 id=""
                 placeholder="Tell me anything..."
               />
-              <button type="submit">➡</button>
+              {waitingRequest ? (
+                <div className={style.loader}></div>
+              ) : (
+                <button type="submit">➡</button>
+              )}
             </form>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-import {useEffect, useState, useRef} from 'react'
+import { useEffect, useState, useRef } from "react";
 import Chat from "./page";
 
 config();
@@ -13,9 +13,9 @@ const options = {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    authorization: `Bearer ${'a'}`,
+    authorization: `Bearer ${"a"}`,
   },
-  body:''
+  body: "",
 };
 
 async function fetchData() {
@@ -25,73 +25,48 @@ async function fetchData() {
       options
     );
     const data = await response.json();
-    return data;
-  } catch (error) {
-    throw error;
+    return data.openai.generated_text;
+  } catch (error: any) {
+    return error.message;
   }
 }
 
-function ChatState (){
+function ChatState() {
   const requestBody = useRef({
     providers: "openai",
     text: "Hello i need your help ! ",
-    chatbot_global_action: "This chat you'll be using the socratic method. By this, I mean that your job is asking questions to: Clarify thinking, challenge assumptions, use evidence in arguments, explore alternative perspectives, consider the consequences, and question the questions. The user is the one who'll know things, you will not give any help, just question. ",
+    chatbot_global_action:
+      "This chat you'll be using the socratic method. By this, I mean that your job is asking questions to: Clarify thinking, challenge assumptions, use evidence in arguments, explore alternative perspectives, consider the consequences, and question the questions. The user is the one who'll know things, you will not give any help, just question. ",
     previous_history: [],
     temperature: 0.0,
     max_tokens: 150,
     fallback_providers: "",
-  })
+  });
 
-  const previousMessages = useRef<string[]>([]) //even number for user, odd number for ai
+  const [allMessagesState, setAllMessagesState] = useState<string[]>([]); //even number for user, odd number for ai
 
-  const [useMessageState, setMessageState] = useState('');  
+  const [useMessageState, setMessageState] = useState("");
 
-  const [useAiState, setAiState] = useState('');
   useEffect(() => {
-  /* Change options obj */
-  (async () =>{
-  const requestObj = requestBody.current;
-  requestObj.text= useMessageState;
-  options.body = JSON.stringify(requestObj)
-  const aiResponse= await fetchData();
-  const assistantMessage:string= aiResponse.openai.generated_text
-  setAiState(assistantMessage)
-  previousMessages.current.push(useMessageState, assistantMessage);
-  })()
+    function storeMessage(message: string) {
+      setAllMessagesState((prev) => [...prev, message]);
+    }
+    (async () => {
+      storeMessage(useMessageState);
+      const requestObj = requestBody.current;
+      requestObj.text = useMessageState;
+      options.body = JSON.stringify(requestObj);
+      const aiResponse = await fetchData();
+      storeMessage(aiResponse);
+    })();
+  }, [useMessageState]);
 
-}, [useMessageState]);
-
-return <Chat setMessageState={setMessageState}  useAiState={useAiState}/>
+  return (
+    <Chat
+      setMessageState={setMessageState}
+      allMessagesState={allMessagesState}
+    />
+  );
 }
 
-// successful API Calls:
-
-//     Aim: Verify that the frontend successfully fetches data from the API and updates the UI accordingly.
-//     Example: Test that a GET request to /users retrieves the expected user data and renders it in the application.
-
-// Error Response Handling:
-
-//     Aim: Ensure that your application handles error responses from the API gracefully.
-//     Example: Simulate a 404 response when fetching a non-existent resource and verify that your app displays an appropriate error message or handles the error state.
-
-// Loading States:
-
-//     Aim: Test how your application handles loading states while waiting for API responses.
-//     Example: Check that a loading spinner or indicator appears during API requests and disappears when the data is fetched.
-
-// Data Manipulation and POST/PUT Requests:
-
-//     Aim: Validate that your frontend correctly sends data to the API for creation or updates.
-//     Example: Test a form submission by making a POST request to /create and confirm that the data is sent correctly.
-
-// Authentication and Authorization:
-
-//     Aim: Ensure that your frontend handles authentication/authorization-related scenarios properly.
-//     Example: Test accessing a restricted resource without proper authentication and verify that the app redirects to a login page or displays an error.
-
-// Network Failures and Timeouts:
-
-//     Aim: Check how your frontend responds to network failures or timeouts when making API requests.
-//     Example: Simulate a network timeout and verify that your app handles it gracefully, potentially displaying an error message.
-const testing=true;
-export { fetchData, testing, ChatState };
+export { fetchData, ChatState };
