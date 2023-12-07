@@ -77,7 +77,4 @@ describe("ChatState component", () => {
     expect(oldEle.length > 1).toBeTruthy;
     expect(newEle).toBeInTheDocument();
   });
-  test("data gets stored in localStorage", () => {
-    localStorage.setItem("a", "a");
-  });
 });
