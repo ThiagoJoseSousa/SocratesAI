@@ -3,7 +3,6 @@ import { Caesar_Dressing } from "next/font/google";
 import style from "./home.module.css";
 import Footer from "./footer";
 import Link from "next/link";
-
 export const greek = Caesar_Dressing({ subsets: ["latin"], weight: "400" });
 
 export default function Home() {
@@ -13,7 +12,7 @@ export default function Home() {
         <section id="Hero" className="h-[50vh] mb-4 overflow-hidden relative">
           <Image
             src="/Socrates-desktop.webp"
-            className=" hidden md:block h-full object-cover"
+            className=" hidden md:block h-full object-cover object-top"
             priority
             alt="Hero background"
             width={2688}
@@ -34,9 +33,10 @@ export default function Home() {
           }
         >
           <h1 className={`${greek.className} text-center text-2xl`}>
-            Socrates AI: Know thyself
+            Socrates Chatbot
           </h1>
           <hr className="my-4" />
+          
           <div className={`${style.book} mb-4 mx-auto`}>
             <span className={`${style.page} ${style.turn}`}></span>
             <span className={`${style.page} ${style.turn}`}></span>
@@ -49,19 +49,22 @@ export default function Home() {
             <span className={`${style.cover} ${style.turn}`}></span>
           </div>
 
-          <Link href="/chat" className="mx-auto my-5 py-4 px-12 bg-blue-400 uppercase rounded-lg font-semibold">
+          <Link
+            href="/chat"
+            className="mx-auto my-5 py-4 px-12 bg-blue-400 uppercase rounded-lg font-semibold"
+          >
             Initiate
           </Link>
         </section>
 
         <section
           id="How-it-works"
-          className="max-w-2xl mx-4 sm:mx-auto align-center gap-14 bg-gray-300 p-4 rounded-md mb-2"
+          className="max-w-2xl mx-4 sm:mx-auto align-center gap-14 bg-gray-300 p-4 rounded-md mb-4"
         >
           <h2
             className={`font-bold uppercase text-2xl mb-2 ${greek.className} text-center`}
           >
-            The Socratic Method
+            The Socratic Method Chatbot
             <div className={`${style.infinity} mx-auto`}></div>
             <hr className="my-4" />
           </h2>
@@ -94,57 +97,59 @@ export default function Home() {
         </section>
         <section
           id="Benefits"
-          className=" p-4 rounded-md max-w-2xl mx-4 sm:mx-auto mb-4 bg-gray-300 leading-normal"
+          className=" p-4 rounded-md max-w-2xl mx-4 sm:mx-auto mb-4 bg-gray-300 leading-normal text-center"
         >
           <div className="flex items-center justify-center">
-            <h2 className={`font-bold text-center text-2xl mb-2 ${greek.className}`}>
-            Science: Socratic Benefits. Add Stress/anxiety benefits.
+            <h2
+              className={`font-bold text-center text-2xl mb-2 ${greek.className}`}
+            >
+              Science: Socratic Benefits (CBT).
             </h2>
           </div>
           <hr className="my-4" />
           <ol className="grid grid-cols-1 md:grid-cols-2 gap-4 relative">
             <li>
               <p>
-                <strong>Enhanced Critical Thinking:</strong>
+                <strong className="text-lime-700 font-medium">
+                  30-45% improvement:
+                </strong>
               </p>
               <p>
                 {" "}
-                <span className="text-lime-700 font-medium">
-                  +25% to +40%
-                </span>{" "}
-                Impact.
+                <span>In problem-solving skills.</span>
+              </p>
+            </li>{" "}
+            <li>
+              <p>
+                <strong className="text-lime-700 font-medium">
+                  25-35% decrease:
+                </strong>
+              </p>
+              <p>
+                {" "}
+                <span>In anxiety severity ratings.</span>{" "}
               </p>
             </li>
             <li>
               <p>
-                <strong>Improved Problem-Solving Abilities :</strong>
+                <strong className="text-lime-700 font-medium">
+                  +20% to +30% increased:
+                </strong>
               </p>
               <p>
                 {" "}
-                <span className="text-lime-700 font-medium">Up to +30% </span>
-                Enhancement.
+                <span>Engagement and Participation.</span>
               </p>
             </li>
             <li>
               <p>
-                <strong>Increased Engagement and Participation:</strong>
+                <strong className="text-lime-700 font-medium">
+                  Approx. +30% of uplift:
+                </strong>
               </p>
               <p>
                 {" "}
-                <span className="text-lime-700 font-medium">
-                  +20% to +50%
-                </span>{" "}
-                Uplift.
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Development of Communication Skills:</strong>
-              </p>
-              <p>
-                {" "}
-                <span className="text-lime-700 font-medium">Approx. +30% </span>
-                Improvement.
+                <span>Communication Skills</span>
               </p>
             </li>
           </ol>
@@ -165,4 +170,3 @@ export default function Home() {
     </>
   );
 }
-

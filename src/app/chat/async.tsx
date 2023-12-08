@@ -1,12 +1,8 @@
-import { config } from "dotenv";
-
-config();
-
 const options = {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    authorization: `Bearer ${"a"}`,
+    authorization: `Bearer ${process.env.API_KEY}`,
   },
   body: "",
 };
@@ -18,7 +14,8 @@ async function fetchData() {
       options
     );
     const data = await response.json();
-    return data.openai.generated_text;
+    alert(JSON.stringify(data))
+    return data;
   } catch (error: any) {
     return `Error: ${error.message}`;
   }
