@@ -14,7 +14,6 @@ async function fetchData() {
       options
     );
     const data = await response.json();
-    alert(JSON.stringify(data))
     return data;
   } catch (error: any) {
     return `Error: ${error.message}`;

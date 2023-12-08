@@ -64,7 +64,7 @@ export default function Home() {
           <h2
             className={`font-bold uppercase text-2xl mb-2 ${greek.className} text-center`}
           >
-            The Socratic Method Chatbot
+            Challenge yourself
             <div className={`${style.infinity} mx-auto`}></div>
             <hr className="my-4" />
           </h2>
